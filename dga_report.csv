@@ -1,0 +1,7 @@
+﻿domain,probability,risk_level,graph_path
+google.com,0.0012,🟢 낮음,report_google.com.png
+paypal.com,0.0025,🟢 낮음,report_paypal.com.png
+xiuqweor.biz,0.9466,🔴 매우 높음,report_xiuqweor.biz.png
+microsoft-auth.net,0.0005,🟢 낮음,report_microsoft-auth.net.png
+lkjfdsaoiuqweop.biz,1.0,🔴 매우 높음,report_lkjfdsaoiuqweop.biz.png
+zkxvqeorqwiep.biz,0.9999,🔴 매우 높음,report_zkxvqeorqwiep.biz.png
