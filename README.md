@@ -1,19 +1,19 @@
 # 🧠 DGA Detection with CNN + BiLSTM + Attention: A Model Built Using ChatGPT
 
-<div class="notice--primary" markdown="1">
-**<u style="color:red">"본 연구(프로젝트)는 AI 기반 자연어 처리 모델인 OpenAI의 ChatGPT를 활용하여 개발 및 수행되었다."</u>**
-<br>
+> **"본 연구(프로젝트)는 AI 기반 자연어 처리 모델인 OpenAI의 ChatGPT를 활용하여 개발 및 수행되었다."**
+
 
 # ChatGPT를 활용한 딥러닝(CNN+BiLSTM+Attention) 기반 DGA 탐지 모델 개발
 
-## 📌 프로젝트 소개
+## 프로젝트 소개
 
 DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지속적으로 C&C 서버와 통신하기 위해 임의의 도메인을 자동으로 생성하는 기술이다. 기존의 블랙리스트 기반 탐지 방식으로는 효과적인 대응이 어렵고, 이로 인해 공격의 지속성 및 네트워크 자원 소모 등 다양한 피해가 발생한다. 실제로 Conficker, Cryptolocker, Gameover Zeus 등 DGA를 이용한 악성코드가 전 세계적으로 수천만 달러 이상의 막대한 경제적 피해를 일으킨 사례가 있다. 따라서 DGA 탐지를 위한 신속하고 정확한 시스템 구축이 사이버 보안 대응에서 필수적이다. 이를 탐지하기 위해 딥러닝 기반 탐지 모델을 만들었으며, 문자 단위 특징을 추출하기 위한 CNN과 시퀀스 문맥 처리를 위한 BiLSTM, 특정 중요 정보에 집중하는 Attention 매커니즘을 결합하여 DGA 탐지 모델을 만들 수 있었다.
+
 ---
 
 > 본 프로젝트에서는 BiLSTM 단독 모델 학습을 통한 DGA 탐지 부터 단계적으로 성능을 개선해나가며 최종적으로 CNN + BiLSTM + Attention 을 활용하여 성능이 대폭 향상된 DGA 탐지 모델 학습을 진행하였다.
 
-## 🏗️ 모델 구조
+## 모델 구조
 
 | 모델 단계 | 구성 요소 |
 |-----------|-----------|
@@ -23,7 +23,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 
 ---
 
-## 🧪 실험 결과 (실제 수치 기반)
+## 실험 결과 (실제 수치 기반)
 
 | 모델 | Accuracy | AUC | Validation Loss |
 |------|----------|-----|-----------------|
@@ -33,7 +33,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 
 ---
 
-## 🧯 주요 트러블슈팅 & 개선 이력
+## 주요 트러블슈팅 & 개선 이력
 
 | 문제 | 원인 분석 | 해결 방법 |
 |------|-----------|------------|
@@ -49,7 +49,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 3. Activation Function 변경과 Conv 설정(kernel_size=5, output_channels=128), Embedding 크기를 128 -> 256 수정과 모델 가중치 초기화를 진행하였으나 문제가 해결되지 않음
 4. 초기 모델 구조가 잘못됐거나 overfitting에만 최적화된 구조로 판단하였으며, GPU가 아닌 CPU로 동작중인 것을 확인함
 5. **<u style="color:red">GPU 사용을 설정하고 사용 모델을 Bidirectional LSTM + FC2 레이어(초기 진행 모델)로 진행함</u><br>
-![그림 1](image.png)<br>
+![그림 1](images/image.png)<br>
 
 | Class     | Precision | Recall | F1-Score | Support |
 |-----------|-----------|--------|----------|---------|
@@ -67,7 +67,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 9. 현재 모델에서 CNN을 결합하여 로컬 패턴 추출 기능을 추가함 즉, 문자열에서 국소 패턴(CNN) + 전체 문맥(BiLSTM)을 동시에 학습 하도록 진행함.
 <br>
 
-![그림 2](image-1.png)<br>
+![그림 2](images/image-1.png)<br>
 
 | Class        | Precision | Recall | F1-Score | Support |
 |--------------|-----------|--------|----------|---------|
@@ -97,7 +97,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 14. 학습 모델이 패턴 + 문맥 + 중요 위치까지 모두 고려해서 가장 정교한 분류를 할 수 있도록 진행함
 <br>
 
-![그림 3](image-2.png)<br>
+![그림 3](images/image-2.png)<br>
 
 | Class        | Precision | Recall | F1-Score | Support |
 |--------------|-----------|--------|----------|---------|
@@ -122,7 +122,7 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 
 ## 모델 성능 아키텍처별 비교
 
-![그림 4](image-3.png)
+![그림 4](images/image-3.png)
 
 | 단계 | 모델 구조                  | Accuracy | AUC    | Val Loss | 주요 특징                             |
 |------|----------------------------|----------|--------|----------|----------------------------------------|
@@ -276,6 +276,3 @@ DGA(Domain Generation Algorithm)는 악성코드가 탐지를 회피하고 지�
 ## ✨ 향후 확장 계획
 
 - 더 많은 데이터셋을 가진 학습 모델 생성성
-- [ ] PDF 기반 자동 리포트 생성
-- [ ] Streamlit 기반 사용자 입력 대시보드
-- [ ] Transformer 기반 실험 추가
